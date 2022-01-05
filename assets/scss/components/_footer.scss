@@ -1,0 +1,96 @@
+footer {
+  background: $brand-blue;
+  border-top-left-radius: 50px;
+  border-top-right-radius: 50px;
+
+  h3 {
+    color: $white;
+    font-size: rem(16px);
+    line-height: rem(24px);
+  }
+
+  p,
+  a {
+    color: $white;
+    font-size: rem(14px);
+    line-height: rem(22px);
+  }
+
+  a {
+    &:hover {
+      color: $white;
+    }
+  }
+
+  h3 {
+    font-weight: $font-semi-bold;
+  }
+
+  .footer {
+    &-top-section {
+    }
+
+    &-middle-section {
+      p,
+      a {
+        display: flex;
+
+        i {
+          flex: 0 0 auto;
+          margin-top: 2px;
+        }
+
+        span {
+          display: block;
+          flex: 1;
+        }
+      }
+
+      p {
+        padding-bottom: 1.25rem;
+      }
+
+      a {
+        margin-bottom: -0.25rem;
+        @extend .lips-link;
+      }
+
+      i {
+        font-size: rem(16px);
+      }
+    }
+
+    &-bottom-section {
+      .my-health-spec-logo {
+        font-size: 30px;
+      }
+
+      .footer-links {
+        a {
+          font-weight: $font-semi-bold;
+          font-size: rem(14px);
+          line-height: rem(22px);
+          @extend .lips-link;
+        }
+      }
+
+      .footer-social {
+        a {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          color: $brand-blue;
+          background: $brand-blue-bg-opacity;
+          width: 45px;
+          height: 45px;
+          border-radius: 100%;
+          @include transition;
+
+          &:hover {
+            background: $white;
+          }
+        }
+      }
+    }
+  }
+}
