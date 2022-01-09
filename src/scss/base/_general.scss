@@ -1,0 +1,155 @@
+html,
+body {
+  max-width: unset;
+  min-width: unset;
+  overflow-x: hidden;
+  font-family: $franklin-family;
+  min-height: 100vh;
+
+  * {
+    @include box-sizing;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 14px;
+}
+
+body {
+  font-size: rem(16px);
+  line-height: rem(24px);
+  display: flex;
+  flex-direction: column;
+
+  header,
+  footer {
+    flex: 0 0 auto;
+  }
+
+  main {
+    flex: 1;
+  }
+}
+
+// body,
+// .modal,
+// .custom-scroll {
+//   &::-webkit-scrollbar {
+//     width: 7px;
+//     height: 7px;
+//     z-index: 10;
+//   }
+
+//   &::-webkit-scrollbar-track {
+//     border: $light-gray 2px solid;
+//     background-color: #d8d8d8;
+//     border-radius: 24px;
+//   }
+
+//   &::-webkit-scrollbar-thumb {
+//     background-color: $brand-blue;
+//     border-radius: 3px;
+//   }
+// }
+
+a {
+  @include transition;
+}
+
+// b {
+//   font-weight: $font-semi-bold;
+// }
+
+// p,
+// li {
+//   font-size: rem(16px);
+//   line-height: rem(30px);
+// }
+
+.dir-rtl {
+  direction: rtl !important;
+}
+
+.dir-ltr {
+  direction: ltr !important;
+}
+
+.container {
+  width: 100%;
+  max-width: 100%;
+  min-width: unset;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+.overflow-hidden {
+  overflow: hidden;
+}
+
+// .observable-hidden {
+//   display: block;
+//   position: absolute;
+//   width: 0;
+//   height: 0;
+//   opacity: 0;
+//   visibility: hidden;
+//   z-index: -100;
+// }
+
+.btn-container {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 -1.5rem;
+
+  .btn {
+    margin: 0 1.5rem;
+    width: auto;
+    flex: 0 0 auto;
+  }
+}
+
+.section-title {
+  font-weight: $franklin-medium;
+  font-size: rem(28px);
+  line-height: rem(36px);
+  color: $brand-primary;
+}
+
+.section-desc {
+  margin-top: 0.75rem;
+}
+
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------
+    Text colors
+---------------------------------------------------------------------------------------------------------------------------------------------------- */
+
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------
+    Font weights
+---------------------------------------------------------------------------------------------------------------------------------------------------- */
+
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------
+    Responsive
+---------------------------------------------------------------------------------------------------------------------------------------------------- */
+@mixin general-sm {
+}
+
+@mixin general-md {
+}
+
+@mixin general-lg {
+  html {
+    font-size: 16px;
+  }
+
+  .container {
+    max-width: 1080px;
+    min-width: unset;
+  }
+}
+
+@mixin general-xl {
+}
+
+@mixin general-xxl {
+}

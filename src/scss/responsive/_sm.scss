@@ -1,0 +1,7 @@
+@media (min-width: 576px) {
+  @include general-sm;
+  @include header-sm;
+  @include footer-sm;
+  @include buttons-sm;
+  @include homepage-sm;
+}

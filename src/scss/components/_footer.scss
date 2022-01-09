@@ -1,0 +1,174 @@
+.footer {
+  background: $brand-primary;
+  padding: 3rem 0;
+
+  &-container {
+    display: flex;
+    flex-direction: column;
+    margin: 0 -0.75rem;
+  }
+
+  &-logo,
+  &-copy-rights-container,
+  &-quick-links {
+    padding: 0 0.75rem;
+  }
+
+  &-logo {
+    order: 1;
+
+    a {
+      display: block;
+      width: 87px;
+    }
+
+    img {
+      width: 100%;
+    }
+  }
+
+  &-copy-rights {
+    &-container {
+      order:3;
+      margin-top: 1.5rem;
+
+      span,
+      a {
+        font-size: rem(14px);
+        line-height: rem(24px);
+        color: $white;
+      }
+
+      a {
+        display: block;
+        margin-top: 1.5rem;
+        text-decoration: underline !important;
+      }
+    }
+  }
+
+  &-quick-links {
+    order:2;
+    display: flex;
+    align-items: flex-end;
+    margin-top: 1.5rem;
+
+    ul {
+      display: flex;
+      flex-wrap: wrap;
+      margin: -0.5rem -1rem;
+
+      li {
+        margin: 0.25rem 0;
+        flex: 0 0 auto;
+        width: 100%;
+
+        &:last-child {
+          border: 0;
+        }
+      }
+    }
+
+    a {
+      display: block;
+      flex: 0 0 auto;
+      color: $white;
+      padding: 0.25rem 1rem;
+      opacity: 0.6;
+      white-space: nowrap;
+      font-size: rem(14px);
+      line-height: rem(14px);
+      @include transition;
+
+      &:hover,
+      &:focus,
+      &:active {
+        opacity: 1;
+      }
+    }
+  }
+}
+
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------
+    Responsive
+---------------------------------------------------------------------------------------------------------------------------------------------------- */
+@mixin footer-sm {
+  .footer {
+    &-container {
+      flex-direction: row;
+      flex-wrap: wrap;
+    }
+
+    &-logo,
+    &-copy-rights-container {
+      width: 50%;
+    }
+
+    &-copy-rights {
+      &-container {
+        order: 2;
+        margin-top: 0;
+      }
+    }
+
+    &-quick-links {
+      width: 100%;
+      order: 3;
+
+      ul {
+        li {
+          width: auto;
+          flex: 0 0 auto;
+          border-#{$right}: 1px solid #84b2cf;
+        }
+      }
+    }
+  }
+}
+
+@mixin footer-md {
+  .footer {
+    padding: 5rem 0 3rem;
+
+    &-logo,
+    &-copy-rights-container {
+      width: 50%;
+    }
+
+    &-logo {
+      flex: 0 0 auto;
+      width: auto;
+    }
+
+    &-copy-rights {
+      &-container {
+        padding-top: 3rem;
+        width: 25%;
+        flex: 0 0 auto;
+        order: 3;
+        text-align: #{$right};
+      }
+    }
+
+    &-quick-links {
+      margin-top: 0;
+      justify-content: center;
+      padding-bottom: 0.25rem;
+      flex: 1;
+      order: 2;
+
+      a {
+        text-align: center;
+      }
+    }
+  }
+}
+
+@mixin footer-lg {
+}
+
+@mixin footer-xl {
+}
+
+@mixin footer-xxl {
+}
