@@ -1,7 +1,7 @@
 $(document).ready(function () {
   // Simulate loading time and remove loader when document is ready
-  setTimeout(function () {
+  //setTimeout(function () {
     $("html").removeAttr("style");
     $("#loader").addClass("hide");
-  }, 400);
+  //}, 400);
 });
