@@ -1,0 +1,80 @@
+.accordion {
+  &-item {
+    &.active {
+      .accordion-header {
+        &:before {
+          #{$right}: 0;
+        }
+
+        i {
+          background: $white;
+          color: $brand-primary;
+
+          &:before {
+            @include transform(scaleY(-1));
+          }
+        }
+
+        h2 {
+          color: $white;
+        }
+      }
+    }
+  }
+
+  &-header {
+    display: block;
+    background: darken($light-gray, 3%);
+    padding: 1.5rem 0;
+    position: relative;
+
+    &:before {
+      content: "";
+      display: block;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      #{$left}: 0;
+      #{$right}: 100%;
+      z-index: 10;
+      background: $brand-primary;
+      background: linear-gradient(
+        90deg,
+        $brand-primary 0%,
+        $brand-secondary 100%
+      );
+      @include transition(all 0.4s ease-out);
+    }
+
+    .container {
+      position: relative;
+      display: flex;
+      align-items: center;
+      z-index: 10;
+    }
+
+    i,
+    h2 {
+      @include transition(all 0.4s);
+    }
+
+    i {
+      width: 50px;
+      height: 50px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 100%;
+      background: $brand-primary;
+      color: $white;
+      font-size: 16px;
+      margin-#{$right}: 1.5rem;
+    }
+  }
+
+  &-content {
+    display: none;
+    background: $white;
+    padding: 1.5rem 0;
+  }
+}

@@ -5,8 +5,10 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "sass-min": "sass --watch assets/scss/main.scss:assets/css/main.min.css assets/scss/loader.scss:assets/css/loader.min.css --style compressed",
-    "sass": "sass --watch assets/scss/main.scss:assets/css/main.css assets/scss/loader.scss:assets/css/loader.css"
+    "build": "webpack",
+    "build-watch": "webpack --watch",
+    "sass-min": "sass --watch src/scss/main.scss:dist/css/main.min.css src/scss/loader.scss:dist/css/loader.min.css --style compressed",
+    "sass": "sass --watch src/scss/main.scss:dist/css/main.css src/scss/loader.scss:dist/css/loader.css"
   },
   "repository": {
     "type": "git",
@@ -19,6 +21,17 @@
   },
   "homepage": "https://github.com/Geo199128/akqa-workshop#readme",
   "dependencies": {
-    "sass": "^1.45.2"
-  }
+    "jquery": "^3.6.0"
+  },
+  "devDependencies": {
+    "css-loader": "^6.5.1",
+    "file-loader": "^6.2.0",
+    "sass": "^1.46.0",
+    "sass-loader": "^12.4.0",
+    "style-loader": "^3.3.1",
+    "url-loader": "^4.1.1",
+    "webpack": "^5.65.0",
+    "webpack-cli": "^4.9.1"
+  },
+  "keywords": []
 }

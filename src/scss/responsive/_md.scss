@@ -1,0 +1,7 @@
+@media (min-width: 768px) {
+  @include general-md;
+  @include header-md;
+  @include footer-md;
+  @include buttons-md;
+  @include homepage-md;
+}

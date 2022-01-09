@@ -1,0 +1,534 @@
+$header-anchor-desktop-height: 70px;
+$show-transition-time: 0.3s;
+
+.header {
+  z-index: 100;
+
+  &-logo,
+  &-search,
+  &-mobile-menu {
+    padding: 0 0.75rem;
+  }
+
+  &-logo,
+  &-mobile-menu {
+    flex: 0 0 auto;
+  }
+
+  &-logo {
+    width: 50%;
+    order: 1;
+
+    &-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      padding: 2rem 0;
+      margin: 0 -0.75rem;
+    }
+
+    img {
+      width: 100%;
+      max-width: 155px;
+      display: block;
+    }
+  }
+
+  &-search {
+    order: 3;
+    position: relative;
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 1.5rem;
+
+    a {
+      color: $black;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: auto;
+      height: 50px;
+      width: 30px;
+      position: absolute;
+      #{$right}: 25px;
+      top: 50%;
+      @include transform(translateY(-50%));
+    }
+
+    input {
+      width: 100%;
+      height: 50px;
+      border: 1px solid $border-gray;
+      border-radius: 100px;
+      font-size: rem(12px);
+      line-height: 50px;
+      padding: 0 25px;
+      padding-#{$right}: 55px;
+    }
+  }
+
+  &-mobile-menu {
+    order: 2;
+    width: 50%;
+    display: flex;
+    justify-content: flex-end;
+
+    &-btn {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 25px;
+      position: relative;
+      z-index: 10;
+
+      span {
+        position: relative;
+
+        &,
+        &:before,
+        &:after {
+          width: 40px;
+          height: 3px;
+          background: $black;
+          display: block;
+          border-radius: 100px;
+          @include transition;
+        }
+
+        &:before,
+        &:after {
+          content: "";
+          position: absolute;
+        }
+
+        &:before {
+          top: -11px;
+        }
+
+        &:after {
+          bottom: -11px;
+        }
+      }
+
+      &.active {
+        span {
+          background: $white;
+
+          &:before {
+            @include transform(rotate(45deg));
+            top: 0;
+          }
+
+          &:after {
+            bottom: 0;
+            @include transform(rotate(-45deg));
+          }
+        }
+      }
+    }
+  }
+
+  &-first-level-menu {
+    background: $white;
+
+    & > li {
+      & > a {
+        color: $text-main-color !important;
+      }
+    }
+  }
+
+  &-second-level-menu {
+    background: $light-gray;
+
+    & > li {
+      & > a {
+        color: $brand-primary;
+      }
+    }
+  }
+
+  &-third-level-menu {
+    background: $brand-primary;
+
+    & > li {
+      & > a {
+        color: $white;
+      }
+    }
+  }
+}
+
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------
+    Mixins
+---------------------------------------------------------------------------------------------------------------------------------------------------- */
+@mixin submenu-hide {
+  opacity: 0;
+  @include transform(translateY(15px));
+}
+
+@mixin submenu-show {
+  opacity: 1;
+  @include transform(translateY(0));
+}
+
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------
+    Responsive
+---------------------------------------------------------------------------------------------------------------------------------------------------- */
+@mixin header-sm {
+  .header {
+    &-logo {
+      width: 155px;
+    }
+
+    &-search {
+      margin-top: 0;
+      order: 2;
+
+      input {
+        max-width: 350px;
+      }
+    }
+
+    &-mobile-menu {
+      justify-content: center;
+      width: 50px;
+      order: 3;
+    }
+  }
+}
+
+@mixin header-md {
+  .header {
+    &-mobile-menu {
+      width: 8rem;
+      &-btn {
+        display: none;
+      }
+    }
+
+    &-nav-container {
+      margin: 0 -0.75vw;
+      position: relative;
+      padding: 0;
+      @include transition;
+
+      &.first-active {
+        padding-bottom: $header-anchor-desktop-height;
+      }
+
+      &.second-active {
+        padding-bottom: $header-anchor-desktop-height * 2;
+      }
+    }
+
+    &-menu {
+      display: flex;
+      z-index: -10;
+
+      li {
+        flex: 0 0 auto;
+      }
+
+      a {
+        height: $header-anchor-desktop-height;
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0 0.75vw;
+        font-family: $source-family;
+
+        &:after {
+          content: "";
+          position: absolute;
+          bottom: 0;
+          border-left: 7px solid transparent;
+          border-right: 7px solid transparent;
+          border-bottom: 0px solid transparent;
+          @include transition;
+        }
+      }
+
+      &.active {
+        z-index: 100;
+        @include transition((all $show-transition-time, z-index 0s));
+        @include submenu-show;
+
+        & ~ a {
+          &:after {
+            border-bottom-width: 7px;
+          }
+        }
+      }
+
+      // & > li {
+      //   &:first-child {
+      //     a {
+      //       padding-#{$left}: 0;
+      //     }
+      //   }
+
+      //   &:last-child {
+      //     a {
+      //       padding-#{$right}: 0;
+      //     }
+      //   }
+      // }
+    }
+
+    &-first-level-menu {
+      & > li {
+        & > a {
+          &:after {
+            border-bottom-color: $light-gray;
+          }
+
+          &.active,
+          &:hover,
+          &:focus {
+            text-shadow: 0px 0px $text-main-color;
+          }
+        }
+      }
+    }
+
+    &-second-level-menu,
+    &-third-level-menu {
+      position: absolute;
+      top: $header-anchor-desktop-height;
+      left: 0;
+      right: 0;
+      //height: 0;
+      @include transition(
+        (all $show-transition-time, z-index 0s ease $show-transition-time)
+      );
+      @include submenu-hide;
+
+      // &.active {
+      //   //height: $header-anchor-desktop-height;
+
+      //   & > li {
+      //     & > a {
+      //       height: $header-anchor-desktop-height;
+      //     }
+      //   }
+      // }
+
+      &:before {
+        content: "";
+        display: block;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 100vw;
+        #{$left}: calc((100vw - 100%) / -2);
+        z-index: 10;
+      }
+
+      a {
+        position: relative;
+        z-index: 20;
+        // height: 0;
+
+        &:before {
+          content: "";
+          border-bottom: 1px solid transparent;
+          position: absolute;
+          bottom: 20px;
+          #{$left}: 0.5rem;
+          #{$right}: 100%;
+          @include transition;
+        }
+
+        &.active,
+        &:hover,
+        &:focus {
+          &:before {
+            #{$right}: 0.5rem;
+          }
+        }
+      }
+    }
+
+    &-second-level-menu {
+      &:before {
+        background: $light-gray;
+      }
+
+      & > li {
+        & > a {
+          &:before {
+            border-color: $brand-primary;
+          }
+
+          &:after {
+            border-bottom-color: $brand-primary;
+          }
+
+          &.active,
+          &:hover {
+            text-shadow: 0px 0px $brand-primary;
+          }
+        }
+      }
+    }
+
+    &-third-level-menu {
+      &:before {
+        background: $brand-primary;
+      }
+
+      & > li {
+        & > a {
+          &:before {
+            border-color: $white;
+          }
+
+          &.active,
+          &:hover {
+            text-shadow: 0px 0px $white;
+          }
+        }
+      }
+    }
+  }
+}
+
+@mixin header-lg {
+}
+
+@mixin header-xl {
+}
+
+@mixin header-xxl {
+}
+
+// Special mobile tablet media query to not implement a lot of overrides
+@media (max-width: 767px) {
+  .header {
+    &-nav-container {
+      background: $white;
+      position: fixed;
+      #{$right}: 0;
+      top: 0;
+      bottom: 0;
+      width: 250px;
+      padding-top: 7rem;
+      @include box-shadow($box-shadow);
+      @include transform(translateX(110%));
+      @include transition;
+
+      &.active {
+        @include transform(translateX(0));
+      }
+
+      nav {
+        overflow: auto;
+        height: 100%;
+      }
+    }
+
+    &-first-level-menu {
+      li {
+        display: flex;
+        flex-direction: column;
+
+        & > a {
+          order: 1;
+        }
+
+        & > ul {
+          order: 2;
+        }
+      }
+
+      a {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 1.5rem;
+
+        &.active {
+          &:after {
+            color: $white;
+          }
+        }
+      }
+
+      ul {
+        & ~ a {
+          &:after {
+            content: "\e905";
+            /* use !important to prevent issues with browser extensions that change fonts */
+            font-family: "icomoon" !important;
+            speak: never;
+            font-style: normal;
+            font-weight: normal;
+            font-variant: normal;
+            text-transform: none;
+            line-height: 1;
+
+            /* Better Font Rendering =========== */
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+
+            font-size: 12px;
+            width: 25px;
+            height: 25px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 100%;
+            @include transition;
+          }
+
+          &.active {
+            &:after {
+              @include transform(scaleY(-1));
+            }
+          }
+        }
+      }
+
+      .header-menu {
+        display: none;
+      }
+
+      & > li {
+        & > a {
+          border-bottom: 1px solid $light-gray;
+
+          &.active {
+            &:after {
+              background: $text-main-color;
+            }
+          }
+        }
+      }
+    }
+
+    &-second-level-menu {
+      & > li {
+        & > a {
+          border-bottom: 1px solid darken($light-gray, 5%);
+
+          &.active {
+            &:after {
+              background: $brand-primary;
+            }
+          }
+        }
+      }
+    }
+
+    &-third-level-menu {
+      & > li {
+        & > a {
+          border-bottom: 1px solid darken($brand-primary, 5%);
+        }
+      }
+    }
+  }
+}

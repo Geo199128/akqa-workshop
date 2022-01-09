@@ -1,0 +1,67 @@
+@import "base/variables";
+@import "base/functions";
+@import "base/mixins";
+@import "base/animations";
+
+#loader {
+  background: $white;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  opacity: 1;
+  visibility: visible;
+  z-index: 1000;
+  @include transition((all 0s));
+
+  &.hide {
+    opacity: 0;
+    visibility: hidden;
+    z-index: -100;
+    @include transition((all 0.3s, z-index 0s ease 0.3s));
+  }
+
+  &:before,
+  &:after,
+  img {
+    display: block;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    top: 50%;
+    @include transform(translateY(-50%));
+  }
+
+  &:before,
+  &:after {
+    content: "";
+    border-radius: 100%;
+  }
+
+  &:before {
+    background: $white;
+    width: 150px;
+    height: 150px;
+    z-index: 20;
+  }
+
+  &:after {
+    background: $brand-primary;
+    background: linear-gradient(
+      90deg,
+      $brand-primary 0%,
+      $brand-secondary 100%
+    );
+    width: 165px;
+    height: 165px;
+    z-index: 10;
+    animation: rotate-loader 1.5s linear infinite;
+  }
+
+  img {
+    width: 110px;
+    z-index: 30;
+  }
+}

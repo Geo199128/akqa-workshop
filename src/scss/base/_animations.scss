@@ -1,0 +1,9 @@
+@keyframes rotate-loader {
+  from {
+    @include transform(translateY(-50%) rotate(0deg));
+  }
+
+  to {
+    @include transform(translateY(-50%) rotate(360deg));
+  }
+}
